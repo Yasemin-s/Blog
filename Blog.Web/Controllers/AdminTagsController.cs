@@ -35,7 +35,16 @@ namespace Blog.Web.Controllers
 
             blogDbContext.Tags.Add(tag);
             blogDbContext.SaveChanges();
-            return View("Add");
+            return RedirectToAction("List");
+        }
+
+        [HttpGet]
+        [ActionName("List")]
+        public IActionResult List()
+        {
+            //etiketleri okumak icin vt baglantisi gerek
+            var tags = blogDbContext.Tags.ToList();
+            return View(tags);
         }
     }
 }
