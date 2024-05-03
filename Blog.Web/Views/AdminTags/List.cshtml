@@ -17,6 +17,7 @@
                     <th>Id</th>
                     <th>Ad</th>
                     <th>Görünür Ad</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -26,6 +27,10 @@
                         <td>@tag.Id</td>
                         <td>@tag.Name</td>
                         <td>@tag.DisplayName</td>
+                        <td>
+                            <a asp-area="" asp-controller="AdminTags" asp-action="Edit"
+                            asp-route-id="@tag.Id">Düzenle</a>
+                        </td>
                     </tr>
                 }
             </tbody>

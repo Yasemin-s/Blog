@@ -46,5 +46,62 @@ namespace Blog.Web.Controllers
             var tags = blogDbContext.Tags.ToList();
             return View(tags);
         }
+
+        [HttpGet]
+        public IActionResult Edit(Guid Id)
+        {
+            var tag = blogDbContext.Tags.FirstOrDefault(x => x.Id == Id);
+
+            if (tag != null)
+            {
+                var editTagRequest = new EditTagRequest
+                {
+                    Id = tag.Id,
+                    Name = tag.Name,
+                    DisplayName = tag.DisplayName
+                };
+
+                return View(editTagRequest);
+            }
+            return View(null);
+
+        }
+
+        [HttpPost]
+        public IActionResult Edit(EditTagRequest editTagRequest)
+        {
+            var tag = new Tag
+            {
+                Id = editTagRequest.Id,
+                Name = editTagRequest.Name,
+                DisplayName = editTagRequest.DisplayName
+            };
+            var existingTag = blogDbContext.Tags.Find(tag.Id);
+            if (existingTag != null)
+            {
+                existingTag.Name = tag.Name;
+                existingTag.DisplayName = tag.DisplayName;
+                blogDbContext.SaveChanges();
+
+                return RedirectToAction("Edit", new { id = editTagRequest.Id });
+            }
+            return RedirectToAction("Edit", new { id = editTagRequest.Id });
+        }
+
+        [HttpPost]
+        public IActionResult Delete(EditTagRequest editTagRequest)
+        {
+            var tag = blogDbContext.Tags.Find(editTagRequest.Id);
+
+            if(tag != null)
+            {
+                blogDbContext.Tags.Remove(tag);
+                blogDbContext.SaveChanges();
+
+                return RedirectToAction("List");
+            }
+            return RedirectToAction("Edit", new { id = editTagRequest.Id });
+        }
     }
 }
+
