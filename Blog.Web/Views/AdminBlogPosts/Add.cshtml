@@ -1,0 +1,80 @@
+﻿@model Blog.Web.Models.ViewModels.AddBlogPostRequest
+@{
+}
+
+<div class="bg-secondary bg-opacity-10 py-2">
+    <div class="container">
+        <h1>Yeni Post Ekleme - Yönetici İşlemleri</h1>
+    </div>
+</div>
+
+<div class="container py-5">
+    <form merhod="post">
+
+        <div class="mb-3">
+            <label class="form-label">Başlık</label>
+            <input type="text" class="form-control" id="heading" asp-for="Heading"/>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Post Sayfa Başlığı</label>
+            <input type="text" class="form-control" id="pageTitle" asp-for="PageTitle"/>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">İçerik</label>
+            <textarea class="form-control" id="content" asp-for="Content"></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Kısa Açıklama</label>
+            <input type="text" class="form-control" id="shortDescription" asp-for="ShortDescription" />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Resim Url</label>
+            <input type="text" class="form-control" id="featuredImageUrl" asp-for="FeaturedImageUrl" />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Kısa Url</label>
+            <input type="text" class="form-control" id="urlHandle" asp-for="UrlHandle" />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Yayınlanma Tarihi</label>
+            <input type="date" class="form-control" id="publishedDate" asp-for="PublishedDate" />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Yazar</label>
+            <input type="text" class="form-control" id="author" asp-for="Author" />
+        </div>
+
+        <div class="form-check mb-3">
+            <input class="form-check-input" type="checkbox" id="visible" asp-for="Visible">
+            <label class="form-check-label">
+               Görünür Olsun Mu?
+            </label>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Etiketler</label>
+            <select class="form-select"
+            asp-items="@Model.Tags"
+            asp-for="SelectedTag">
+
+            </select>
+        </div>
+
+
+
+        @* postlarin hangi etikete atanmasi egrektigi kismi - etiketleri vt den alacak acilabilir bir menu eklemek istiyorum *@
+        <div class="mb-3">
+            <button type="submit" class="btn btn-dark">
+                Kaydet
+            </button>
+        </div>
+
+    </form>
+</div>
