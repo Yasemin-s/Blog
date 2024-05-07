@@ -125,6 +125,61 @@ namespace Blog.Web.Controllers
         }
 
 
+        [HttpPost]
+        public async Task<IActionResult> Edit(EditBlogPostRequest editBlogPostRequest)
+        {
+            //view modeli domain modele cevirme
+            var blogPostDomainModel = new BlogPost
+            {
+                Id = editBlogPostRequest.Id,
+                Heading = editBlogPostRequest.Heading,
+                PageTitle = editBlogPostRequest.PageTitle,
+                Content = editBlogPostRequest.Content,
+                Author = editBlogPostRequest.Author,
+                ShortDescription = editBlogPostRequest.ShortDescription,
+                FeaturedImageUrl = editBlogPostRequest.FeaturedImageUrl,
+                PublishedDate = editBlogPostRequest.PublishedDate,
+                UrlHandle = editBlogPostRequest.UrlHandle,
+                Visible = editBlogPostRequest.Visible
+            };
+
+            //domain model içine etiket eşleme
+            var selectedTags = new List<Tag>();
+            foreach(var selectedTag in editBlogPostRequest.SelectedTags)
+            {
+                if(Guid.TryParse(selectedTag, out var tag))
+                {
+                    var foundTag = await tagRepository.GetAsync(tag);
+                    if(foundTag != null)
+                    {
+                        selectedTags.Add(foundTag);
+                    }
+                }
+            }
+
+            blogPostDomainModel.Tags = selectedTags;
+
+            var updateBlog = await blogPostRepository.UpdateAsync(blogPostDomainModel);
+
+            if(updateBlog != null)
+            {
+                return RedirectToAction("Edit");
+            }
+            return RedirectToAction("Edit");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(EditBlogPostRequest editBlogPostRequest)
+        {
+            var deletedBlogPost = await blogPostRepository.DeleteAsync(editBlogPostRequest.Id);
+
+            if(deletedBlogPost != null)
+            {
+                return RedirectToAction("List");
+            }
+
+            return RedirectToAction("Edit", new { id = editBlogPostRequest.Id });
+        }
 
     }
 }
