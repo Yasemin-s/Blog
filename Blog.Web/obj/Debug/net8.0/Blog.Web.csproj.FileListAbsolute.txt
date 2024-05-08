@@ -134,3 +134,5 @@ D:\Blog\Blog\Blog.Web\obj\Debug\net8.0\refint\Blog.Web.dll
 D:\Blog\Blog\Blog.Web\obj\Debug\net8.0\Blog.Web.pdb
 D:\Blog\Blog\Blog.Web\obj\Debug\net8.0\Blog.Web.genruntimeconfig.cache
 D:\Blog\Blog\Blog.Web\obj\Debug\net8.0\ref\Blog.Web.dll
+D:\Blog\Blog\Blog.Web\bin\Debug\net8.0\CloudinaryDotNet.dll
+D:\Blog\Blog\Blog.Web\bin\Debug\net8.0\Newtonsoft.Json.dll
