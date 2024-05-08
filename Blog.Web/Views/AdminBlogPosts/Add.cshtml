@@ -39,10 +39,6 @@
         </div>
 
 
-
-
-
-
         <div class="mb-3">
             <label class="form-label">Yüklenecek Resim URL</label>
             <input type="text" class="form-control" id="featuredImageUrl" asp-for="FeaturedImageUrl" />
@@ -89,7 +85,9 @@
 
 @section Scripts {
     <script>
-        var editor = new FroalaEditor('#content');
+        var editor = new FroalaEditor('#content',{
+            imageUploadURL:'/api/images' //goruntuleri bu yola yukle dedik
+        });
 
         const featuredUploadElement = document.getElementById('featuredImageUpload');
         const featuredImageUrlElement = document.getElementById('featuredImageUrl');
