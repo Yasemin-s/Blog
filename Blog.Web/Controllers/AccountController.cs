@@ -7,9 +7,9 @@ namespace Blog.Web.Controllers
     //hesap denetleyicisi
     public class AccountController : Controller
     {
-        private readonly AspNetUserManager<IdentityUser> userManager;
+        private readonly UserManager<IdentityUser> userManager;
 
-        public AccountController(AspNetUserManager<IdentityUser> userManager)
+        public AccountController(UserManager<IdentityUser> userManager)
         {
             this.userManager = userManager;
         }
