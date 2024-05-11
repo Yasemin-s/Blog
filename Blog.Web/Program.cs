@@ -1,5 +1,6 @@
 using Blog.Web.Data;
 using Blog.Web.Repositories;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +11,13 @@ builder.Services.AddControllersWithViews();
 //vt yi enjekte etme(parantez ici)
 builder.Services.AddDbContext<BlogDbContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("BlogDbConnectionString")));
+
+builder.Services.AddDbContext<AuthDbContext>(options =>
+options.UseSqlServer(builder.Configuration.GetConnectionString("BlogAuthDbConnectionString")));
+
+builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+    .AddEntityFrameworkStores<AuthDbContext>();
+
 
 builder.Services.AddScoped<ITagRepository,TagRepository>();
 builder.Services.AddScoped<IBlogPostRepository, BlogPostRepository>();
@@ -30,6 +38,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
