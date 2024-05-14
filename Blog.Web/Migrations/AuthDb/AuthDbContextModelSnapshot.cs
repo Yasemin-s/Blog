@@ -60,8 +60,8 @@ namespace Blog.Web.Migrations.AuthDb
                         {
                             Id = "39aa7cf7-c510-4429-b79c-5277c11f9066",
                             ConcurrencyStamp = "39aa7cf7-c510-4429-b79c-5277c11f9066",
-                            Name = "Super Admin",
-                            NormalizedName = "Super Admin"
+                            Name = "SuperAdmin",
+                            NormalizedName = "SuperAdmin"
                         },
                         new
                         {
@@ -166,15 +166,15 @@ namespace Blog.Web.Migrations.AuthDb
                         {
                             Id = "2623cddd-325c-4b6d-b16a-d9e6397d0dce",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "4d73cc24-08b8-4a25-a30a-08b1d2d0f2d3",
+                            ConcurrencyStamp = "e48fcad1-9bfc-4938-bc40-c8aee38b07dc",
                             Email = "superadmin@blog.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "SUPERADMİN@BLOG.COM",
                             NormalizedUserName = "SUPERADMİN@BLOG.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEA8QfuXKC54nK6SRsZewfMNPtME2w+BJ7AJzdeqa8YATsEvYHoU/E/YA5DfoKP3ppA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEHzwjRIZRuFi6uPcbnfLO8nS0E7r6frnGvU28IhOBGeer0TDq3vt8t/VEps05qNWdA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "ac90369c-6b5f-4a5f-adef-e177b9fde4e9",
+                            SecurityStamp = "55908fff-c721-4d9f-b956-31bbae7f97f7",
                             TwoFactorEnabled = false,
                             UserName = "superadmin@blog.com"
                         });

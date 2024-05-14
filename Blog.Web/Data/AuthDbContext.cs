@@ -32,8 +32,8 @@ namespace Blog.Web.Data
                 },
                 new IdentityRole()
                 {
-                   Name = "Super Admin",
-                   NormalizedName = "Super Admin",
+                   Name = "SuperAdmin",
+                   NormalizedName = "SuperAdmin",
                    Id = superAdminRoleId,
                    ConcurrencyStamp = superAdminRoleId
                 },

@@ -49,8 +49,12 @@ namespace Blog.Web.Controllers
 
 
         [HttpGet]
-        public async Task<IActionResult> Login()
+        public async Task<IActionResult> Login(string ReturnUrl)
         {
+            var model = new LoginViewModel 
+            { 
+                ReturnUrl = ReturnUrl 
+            };
             return View();
         }
 
@@ -60,12 +64,19 @@ namespace Blog.Web.Controllers
             var signInResult = await signInManager.PasswordSignInAsync(
                 loginViewModel.UserName,
                 loginViewModel.Password,
-                false,
-                false);
+                false, //Eğer false ise, oturum tarayıcıyı kapattığında sonlanır. Bu parametre, kullanıcı tarafında "Beni Hatırla" seçeneğine karşılık gelir.
+                false); //Oturum açma başarısız olduğunda, hesabın kilitlenip kilitlenmeyeceğini belirtir. Eğer true ise, belirli bir sayıda başarısız deneme sonrasında hesap kilitlenebilir. 
 
 
-            if(signInResult != null && signInResult.Succeeded)
+            if (signInResult != null && signInResult.Succeeded)
             {
+
+                if (!string.IsNullOrEmpty(loginViewModel.ReturnUrl))
+                {
+                    return RedirectToPage(loginViewModel.ReturnUrl);
+                }
+
+
                 return RedirectToAction("Index", "Home");
             }
 
@@ -79,6 +90,12 @@ namespace Blog.Web.Controllers
         {
             await signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
+        }
+
+        [HttpGet]
+        public IActionResult AccessDenied()
+        {
+            return View();
         }
     }
 }

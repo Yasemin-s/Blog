@@ -31,42 +31,53 @@
                             <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
 
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Yönetici
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <a class="dropdown-item"
-                                       asp-area=""
-                                       asp-controller="AdminTags"
-                                       asp-action="Add">Etiket Ekle</a>
-                                </li>
 
 
-                                <li>
-                                    <a class="dropdown-item"
-                                       asp-area=""
-                                       asp-controller="AdminTags"
-                                       asp-action="List">Bütün Etiketleri Göster</a>
-                                </li>
 
-                                <li>
-                                    <a class="dropdown-item"
-                                       asp-area=""
-                                       asp-controller="AdminBlogPosts"
-                                       asp-action="Add">Yeni Post Ekle</a>
-                                </li>
+                        @* burasi yonetici menu kismini gosteren kisimdir ve bu kismi da kisitlamak istiyoruz *@
 
-                                <li>
-                                    <a class="dropdown-item"
-                                       asp-area=""
-                                       asp-controller="AdminBlogPosts"
-                                       asp-action="List">Postların Hepsini Göster</a>
-                                </li>
+                        @* burada ilk kisimda kullanici giris yapacak 2. kisimda giris yapan kullanici admin se diyorum *@
+                        @if (signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Yönetici
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a class="dropdown-item"
+                                           asp-area=""
+                                           asp-controller="AdminTags"
+                                           asp-action="Add">Etiket Ekle</a>
+                                    </li>
 
-                            </ul>
-                        </li>
+
+                                    <li>
+                                        <a class="dropdown-item"
+                                           asp-area=""
+                                           asp-controller="AdminTags"
+                                           asp-action="List">Bütün Etiketleri Göster</a>
+                                    </li>
+
+                                    <li>
+                                        <a class="dropdown-item"
+                                           asp-area=""
+                                           asp-controller="AdminBlogPosts"
+                                           asp-action="Add">Yeni Post Ekle</a>
+                                    </li>
+
+                                    <li>
+                                        <a class="dropdown-item"
+                                           asp-area=""
+                                           asp-controller="AdminBlogPosts"
+                                           asp-action="List">Postların Hepsini Göster</a>
+                                    </li>
+
+                                </ul>
+                            </li>
+                        }
+
+
 
                     </ul>
 
@@ -78,14 +89,14 @@
                         {
                             <div class="me-3 text-light">
                                 @User?.Identity?.Name
-                                </div>
+                            </div>
 
-                               <a class="btn me-3 bg-light text-dark"
+                            <a class="btn me-3 bg-light text-dark"
                                asp-area=""
                                asp-controller="Account"
-                               asp-action="Logout"> 
-                                   Çıkış Yap
-                               </a>
+                               asp-action="Logout">
+                                Çıkış Yap
+                            </a>
                         }
                         else
                         {
@@ -97,14 +108,14 @@
                             </a>
 
 
-                        <div class="d-flex">
-                            <a class="btn me-3 bg-light text-dark"
-                               asp-area=""
-                               asp-controller="Account"
-                               asp-action="Register">
-                                Kayıt Ol
-                            </a>
-                        </div>
+                            <div class="d-flex">
+                                <a class="btn me-3 bg-light text-dark"
+                                   asp-area=""
+                                   asp-controller="Account"
+                                   asp-action="Register">
+                                    Kayıt Ol
+                                </a>
+                            </div>
                         }
 
 
@@ -112,8 +123,8 @@
 
 
 
+                    </div>
                 </div>
-            </div>
         </nav>
     </header>
     <div>
