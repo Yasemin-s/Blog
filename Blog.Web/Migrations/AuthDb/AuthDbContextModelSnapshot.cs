@@ -166,15 +166,15 @@ namespace Blog.Web.Migrations.AuthDb
                         {
                             Id = "2623cddd-325c-4b6d-b16a-d9e6397d0dce",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e48fcad1-9bfc-4938-bc40-c8aee38b07dc",
+                            ConcurrencyStamp = "7a06f80a-8543-448c-a4d4-a690c2dea15e",
                             Email = "superadmin@blog.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "SUPERADMİN@BLOG.COM",
                             NormalizedUserName = "SUPERADMİN@BLOG.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEHzwjRIZRuFi6uPcbnfLO8nS0E7r6frnGvU28IhOBGeer0TDq3vt8t/VEps05qNWdA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAED/AubigWWlIpBp351cQCmtVfLg+ZnS9V7D/gn63T+QpZLDFzb5AG/1gwOhzN8GixQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "55908fff-c721-4d9f-b956-31bbae7f97f7",
+                            SecurityStamp = "17379e9b-c050-4413-8605-a41107188dc0",
                             TwoFactorEnabled = false,
                             UserName = "superadmin@blog.com"
                         });
