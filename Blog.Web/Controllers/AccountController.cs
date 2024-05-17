@@ -55,7 +55,7 @@ namespace Blog.Web.Controllers
             { 
                 ReturnUrl = ReturnUrl 
             };
-            return View();
+            return View(model);
         }
 
         [HttpPost]
@@ -73,7 +73,7 @@ namespace Blog.Web.Controllers
 
                 if (!string.IsNullOrEmpty(loginViewModel.ReturnUrl))
                 {
-                    return RedirectToPage(loginViewModel.ReturnUrl);
+                    return Redirect(loginViewModel.ReturnUrl);
                 }
 
 
