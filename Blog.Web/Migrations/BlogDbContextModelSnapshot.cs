@@ -67,6 +67,32 @@ namespace Blog.Web.Migrations
                     b.ToTable("BlogPosts");
                 });
 
+            modelBuilder.Entity("Blog.Web.Models.Domain.BlogPostComment", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("BlogPostId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("DateAdded")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BlogPostId");
+
+                    b.ToTable("BlogPostComments");
+                });
+
             modelBuilder.Entity("Blog.Web.Models.Domain.BlogPostLike", b =>
                 {
                     b.Property<Guid>("Id")
@@ -120,6 +146,15 @@ namespace Blog.Web.Migrations
                     b.ToTable("BlogPostTag");
                 });
 
+            modelBuilder.Entity("Blog.Web.Models.Domain.BlogPostComment", b =>
+                {
+                    b.HasOne("Blog.Web.Models.Domain.BlogPost", null)
+                        .WithMany("Comments")
+                        .HasForeignKey("BlogPostId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("Blog.Web.Models.Domain.BlogPostLike", b =>
                 {
                     b.HasOne("Blog.Web.Models.Domain.BlogPost", null)
@@ -146,6 +181,8 @@ namespace Blog.Web.Migrations
 
             modelBuilder.Entity("Blog.Web.Models.Domain.BlogPost", b =>
                 {
+                    b.Navigation("Comments");
+
                     b.Navigation("Likes");
                 });
 #pragma warning restore 612, 618
