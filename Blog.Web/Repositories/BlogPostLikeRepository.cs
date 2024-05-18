@@ -1,5 +1,6 @@
 ﻿
 using Blog.Web.Data;
+using Blog.Web.Models.Domain;
 using Microsoft.EntityFrameworkCore;
 
 namespace Blog.Web.Repositories
@@ -12,6 +13,14 @@ namespace Blog.Web.Repositories
         {
             this.blogDbContext = blogDbContext;
         }
+
+        public async Task<BlogPostLike> AddLikeForBlog(BlogPostLike blogPostLike)
+        {
+            await blogDbContext.BlogPostLikes.AddAsync(blogPostLike);
+            await blogDbContext.SaveChangesAsync();
+            return blogPostLike;
+        }
+
         public async Task<int> GetTotalLikes(Guid blogPostId)
         {
             return await blogDbContext.BlogPostLikes.CountAsync(x => x.BlogPostId == blogPostId);
